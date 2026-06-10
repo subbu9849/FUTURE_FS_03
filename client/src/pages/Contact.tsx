@@ -1,11 +1,65 @@
-import { MapPin, Phone, Mail, Instagram, Youtube, Facebook, Clock } from "lucide-react";
+import { useState } from "react";
+import emailjs from "@emailjs/browser";
+import {
+  MapPin,
+  Phone,
+  Mail,
+  Instagram,
+  Youtube,
+  Facebook,
+  Clock,
+} from "lucide-react";
 import SectionReveal from "@/components/SectionReveal";
 import TextReveal from "@/components/TextReveal";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 
-const Contact = () => {
+const Contact = () => {  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (
+    e: React.FormEvent<HTMLFormElement>
+  ) => {
+    e.preventDefault();
+
+    const form = e.currentTarget;
+
+    const first_name =
+      (form.elements.namedItem("first_name") as HTMLInputElement)?.value || "";
+
+    const email =
+      (form.elements.namedItem("email") as HTMLInputElement)?.value || "";
+
+    const phone =
+      (form.elements.namedItem("phone") as HTMLInputElement)?.value || "";
+
+    const message =
+      (form.elements.namedItem("message") as HTMLTextAreaElement)?.value || "";
+
+    try {
+      setLoading(true);
+
+      await emailjs.send(
+        "service_smqy011",
+        "template_ofdce89",
+        {
+          first_name,
+          email,
+          phone,
+          message,
+        },
+        "SyyD1sj52yI5prXoR"
+      );
+
+      alert("Message sent successfully!");
+      form.reset();
+    } catch (error) {
+      console.error(error);
+      alert("Failed to send message.");
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
     <main className="pt-32">
       {/* Hero */}
@@ -100,53 +154,58 @@ const Contact = () => {
                 <h3 className="font-heading text-2xl text-white mb-6">
                   Send a Message
                 </h3>
-                <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
+                <form className="space-y-5" onSubmit={handleSubmit}>
                   <div>
                     <label className="font-nav text-[10px] uppercase tracking-[0.2em] text-muted-foreground mb-2 block">
                       Your Name
                     </label>
                     <Input
-                      type="text"
-                      placeholder="Subbu Shaik"
-                      className="bg-white/5 border-white/10 text-white placeholder:text-white/30 h-12 rounded-xl"
-                    />
+  name="first_name"
+  type="text"
+  placeholder="Subbu Shaik"
+  className="bg-white/5 border-white/10 text-white placeholder:text-white/30 h-12 rounded-xl"
+/>
                   </div>
                   <div>
                     <label className="font-nav text-[10px] uppercase tracking-[0.2em] text-muted-foreground mb-2 block">
                       Email Address
                     </label>
                     <Input
-                      type="email"
-                      placeholder="subbu@example.com"
-                      className="bg-white/5 border-white/10 text-white placeholder:text-white/30 h-12 rounded-xl"
-                    />
+  name="email"
+  type="email"
+  placeholder="subbu@example.com"
+  className="bg-white/5 border-white/10 text-white placeholder:text-white/30 h-12 rounded-xl"
+/>
                   </div>
                   <div>
                     <label className="font-nav text-[10px] uppercase tracking-[0.2em] text-muted-foreground mb-2 block">
                       Phone Number
                     </label>
-                    <Input
-                      type="tel"
-                      placeholder="+91 9550395349"
-                      className="bg-white/5 border-white/10 text-white placeholder:text-white/30 h-12 rounded-xl"
-                    />
+                   <Input
+  name="phone"
+  type="tel"
+  placeholder="+91 9550395349"
+  className="bg-white/5 border-white/10 text-white placeholder:text-white/30 h-12 rounded-xl"
+/>
                   </div>
                   <div>
                     <label className="font-nav text-[10px] uppercase tracking-[0.2em] text-muted-foreground mb-2 block">
                       Your Message
                     </label>
-                    <Textarea
-                      placeholder="Tell us about your event..."
-                      rows={4}
-                      className="bg-white/5 border-white/10 text-white placeholder:text-white/30 rounded-xl resize-none"
-                    />
+                   <Textarea
+  name="message"
+  placeholder="Tell us about your event..."
+  rows={4}
+  className="bg-white/5 border-white/10 text-white placeholder:text-white/30 rounded-xl resize-none"
+/>
                   </div>
                   <Button
-                    type="submit"
-                    className="w-full bg-terracotta text-ivory hover:bg-terracotta-light font-nav text-xs uppercase tracking-[0.2em] h-12 rounded-full"
-                  >
-                    Send Message
-                  </Button>
+  type="submit"
+  disabled={loading}
+  className="w-full bg-terracotta text-ivory hover:bg-terracotta-light font-nav text-xs uppercase tracking-[0.2em] h-12 rounded-full"
+>
+  {loading ? "on the way..." : "Send Message"}
+</Button>
                 </form>
               </div>
             </SectionReveal>
