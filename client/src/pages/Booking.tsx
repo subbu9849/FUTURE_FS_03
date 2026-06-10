@@ -83,7 +83,7 @@ const Booking = () => {
                       </label>
                       <Input
                         type="text"
-                        placeholder="Priya"
+                        placeholder="Subbu "
                         className="bg-white/5 border-white/[0.1] text-white placeholder:text-white/30 h-12 rounded-xl"
                       />
                     </div>
@@ -93,7 +93,7 @@ const Booking = () => {
                       </label>
                       <Input
                         type="text"
-                        placeholder="Sharma"
+                        placeholder="Shaik"
                         className="bg-white/5 border-white/[0.1] text-white placeholder:text-white/30 h-12 rounded-xl"
                       />
                     </div>
@@ -106,7 +106,7 @@ const Booking = () => {
                       </label>
                       <Input
                         type="email"
-                        placeholder="priya@example.com"
+                        placeholder="subbu@example.com"
                         className="bg-white/5 border-white/[0.1] text-white placeholder:text-white/30 h-12 rounded-xl"
                       />
                     </div>
@@ -116,7 +116,7 @@ const Booking = () => {
                       </label>
                       <Input
                         type="tel"
-                        placeholder="+91 98765 43210"
+                        placeholder="+91 9550395349"
                         className="bg-white/5 border-white/[0.1] text-white placeholder:text-white/30 h-12 rounded-xl"
                       />
                     </div>
@@ -155,7 +155,7 @@ const Booking = () => {
                       </label>
                       <Input
                         type="text"
-                        placeholder="Mumbai, India"
+                        placeholder="Andhra Pradesh, India"
                         className="bg-white/5 border-white/[0.1] text-white placeholder:text-white/30 h-12 rounded-xl"
                       />
                     </div>

@@ -1,14 +1,22 @@
 import { useEffect, useState, useRef, useCallback } from "react";
 import { Link } from "react-router-dom";
 import {
-  Camera, Award, Users, Star, ChevronDown, Sparkles,
-  Heart, Image, Video, Plane, Building2, Baby, Camera as CameraIcon,
+  Award, Users, Star, ChevronDown, Sparkles,
+  Heart, Video, Plane, Building2, Camera,
 } from "lucide-react";
 import SectionReveal from "@/components/SectionReveal";
 import AnimatedCounter from "@/components/AnimatedCounter";
 import GlassCard from "@/components/GlassCard";
 import TextReveal from "@/components/TextReveal";
 import ParallaxSection from "@/components/ParallaxSection";
+
+// ✅ Public folder — no import needed, just reference by path
+<img
+  src="/studio-team.jpg"
+  alt="Subbu Studio team — the people behind every frame"
+  className="w-full h-full object-cover object-top"
+/>
+// ─── Data ───────────────────────────────────────────────────────────────────
 
 const heroSlides = [
   {
@@ -29,26 +37,73 @@ const heroSlides = [
 ];
 
 const stats = [
-  { end: 500, suffix: "+", label: "Weddings Captured" },
-  { end: 15, suffix: "+", label: "Years Experience" },
-  { end: 50, suffix: "+", label: "Awards Won" },
-  { end: 2000, suffix: "+", label: "Happy Clients" },
+  { end: 500,  suffix: "+", label: "Weddings Captured" },
+  { end: 15,   suffix: "+", label: "Years Experience"  },
+  { end: 50,   suffix: "+", label: "Awards Won"        },
+  { end: 2000, suffix: "+", label: "Happy Clients"     },
 ];
 
 const services = [
-  { icon: Heart, title: "Wedding Photography", description: "Timeless documentation of your most cherished celebration with artistic vision and emotional depth." },
-  { icon: Sparkles, title: "Pre-Wedding Shoots", description: "Cinematic love stories captured in breathtaking locations before your special day." },
-  { icon: CameraIcon, title: "Fashion Photography", description: "Editorial-grade fashion imagery that elevates brands and personalities." },
-  { icon: Building2, title: "Corporate Events", description: "Professional coverage of corporate gatherings with a refined, polished aesthetic." },
-  { icon: Video, title: "Videography", description: "Cinematic films that bring your stories to life with movement, sound, and emotion." },
-  { icon: Plane, title: "Drone Photography", description: "Breathtaking aerial perspectives that add scale and drama to your visual story." },
+  {
+    icon: Heart,
+    title: "Wedding Photography",
+    description:
+      "Timeless documentation of your most cherished celebration with artistic vision and emotional depth.",
+  },
+  {
+    icon: Sparkles,
+    title: "Pre-Wedding Shoots",
+    description:
+      "Cinematic love stories captured in breathtaking locations before your special day.",
+  },
+  {
+    icon: Camera,
+    title: "Fashion Photography",
+    description:
+      "Editorial-grade fashion imagery that elevates brands and personalities.",
+  },
+  {
+    icon: Building2,
+    title: "Corporate Events",
+    description:
+      "Professional coverage of corporate gatherings with a refined, polished aesthetic.",
+  },
+  {
+    icon: Video,
+    title: "Videography",
+    description:
+      "Cinematic films that bring your stories to life with movement, sound, and emotion.",
+  },
+  {
+    icon: Plane,
+    title: "Drone Photography",
+    description:
+      "Breathtaking aerial perspectives that add scale and drama to your visual story.",
+  },
 ];
 
 const testimonialsPreview = [
-  { quote: "Subbu Studio didn't just photograph our wedding — they captured our souls. Every image brings tears of joy.", name: "Priya & Arjun", role: "Wedding, 2024" },
-  { quote: "The most professional and creative team I've ever worked with. Our pre-wedding film feels like a movie trailer.", name: "Ananya & Rohan", role: "Pre-Wedding, 2024" },
-  { quote: "They turned our corporate event into something visually spectacular. The photos elevated our entire brand.", name: "Vikram Sharma", role: "Corporate Event, 2024" },
+  {
+    quote:
+      "Subbu Studio didn't just photograph our wedding — they captured our souls. Every image brings tears of joy.",
+    name: "Priya & Arjun",
+    role: "Wedding, 2024",
+  },
+  {
+    quote:
+      "The most professional and creative team I've ever worked with. Our pre-wedding film feels like a movie trailer.",
+    name: "Ananya & Rohan",
+    role: "Pre-Wedding, 2024",
+  },
+  {
+    quote:
+      "They turned our corporate event into something visually spectacular. The photos elevated our entire brand.",
+    name: "Vikram Sharma",
+    role: "Corporate Event, 2024",
+  },
 ];
+
+// ─── Component ───────────────────────────────────────────────────────────────
 
 const Home = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -64,15 +119,13 @@ const Home = () => {
   }, []);
 
   const handleScrollDown = useCallback(() => {
-    const next = document.getElementById("about-preview");
-    next?.scrollIntoView({ behavior: "smooth" });
+    document.getElementById("about-preview")?.scrollIntoView({ behavior: "smooth" });
   }, []);
 
-  // Parallax hero on scroll
+  // Parallax fade on scroll
   useEffect(() => {
     const onScroll = () => {
-      const scrollY = window.scrollY;
-      setHeroOpacity(Math.max(0, 1 - scrollY / 800));
+      setHeroOpacity(Math.max(0, 1 - window.scrollY / 800));
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -80,7 +133,10 @@ const Home = () => {
 
   return (
     <main className="relative">
-      {/* ═══════════ HERO SECTION ═══════════ */}
+
+      {/* ══════════════════════════════════════════════════════════════════════
+          HERO
+      ══════════════════════════════════════════════════════════════════════ */}
       <section
         ref={heroRef}
         className="relative h-screen flex items-center justify-center overflow-hidden"
@@ -88,10 +144,15 @@ const Home = () => {
         {/* Background gradient */}
         <div className="absolute inset-0 cinematic-gradient" />
 
-        {/* Decorative ring */}
+        {/* Decorative rings */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <div className="w-[800px] h-[800px] rounded-full border border-terracotta/5 animate-rotate-slow opacity-20" />
-          <div className="absolute w-[600px] h-[600px] rounded-full border border-terracotta/10 animate-rotate-slow opacity-30" style={{ animationDirection: "reverse", animationDuration: "30s" }} />
+          <div
+            className="w-[800px] h-[800px] rounded-full border border-terracotta/5 animate-rotate-slow opacity-20"
+          />
+          <div
+            className="absolute w-[600px] h-[600px] rounded-full border border-terracotta/10 animate-rotate-slow opacity-30"
+            style={{ animationDirection: "reverse", animationDuration: "30s" }}
+          />
         </div>
 
         {/* Floating particles */}
@@ -111,8 +172,11 @@ const Home = () => {
           ))}
         </div>
 
-        <div className="container relative z-10 px-6 text-center" style={{ opacity: heroOpacity }}>
-          {/* Accent label */}
+        <div
+          className="container relative z-10 px-6 text-center"
+          style={{ opacity: heroOpacity }}
+        >
+          {/* Accent pill */}
           <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-terracotta/20 bg-terracotta/5 px-4 py-1.5">
             <span className="h-1.5 w-1.5 rounded-full bg-terracotta animate-pulse" />
             <span className="font-nav text-[10px] uppercase tracking-[0.3em] text-terracotta">
@@ -140,7 +204,7 @@ const Home = () => {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up delay-400">
             <Link
               to="/booking"
-              className="group relative px-8 py-4 bg-terracotta text-ivory font-nav text-sm uppercase tracking-[0.2em] rounded-full overflow-hidden transition-all duration-300 hover:shadow-[0_0_40px_hsl(18 55% 48% / 0.3)]"
+              className="group relative px-8 py-4 bg-terracotta text-ivory font-nav text-sm uppercase tracking-[0.2em] rounded-full overflow-hidden transition-all duration-300 hover:shadow-[0_0_40px_hsl(18_55%_48%/0.3)]"
             >
               <span className="relative z-10">Book Your Session</span>
               <div className="absolute inset-0 bg-terracotta-light translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
@@ -159,10 +223,12 @@ const Home = () => {
               <button
                 key={i}
                 onClick={() => setCurrentSlide(i)}
-                className={`h-[2px] rounded-full transition-all duration-500 ${
-                  i === currentSlide ? "w-8 bg-terracotta" : "w-4 bg-white/20 hover:bg-white/40"
-                }`}
                 aria-label={`Slide ${i + 1}`}
+                className={`h-[2px] rounded-full transition-all duration-500 ${
+                  i === currentSlide
+                    ? "w-8 bg-terracotta"
+                    : "w-4 bg-white/20 hover:bg-white/40"
+                }`}
               />
             ))}
           </div>
@@ -178,7 +244,9 @@ const Home = () => {
         </button>
       </section>
 
-      {/* ═══════════ STATS ═══════════ */}
+      {/* ══════════════════════════════════════════════════════════════════════
+          STATS
+      ══════════════════════════════════════════════════════════════════════ */}
       <section className="py-20 border-t border-white/5">
         <div className="container px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
@@ -200,49 +268,72 @@ const Home = () => {
         </div>
       </section>
 
-      {/* ═══════════ ABOUT PREVIEW ═══════════ */}
+      {/* ══════════════════════════════════════════════════════════════════════
+          ABOUT PREVIEW  ← real team photo placed here
+      ══════════════════════════════════════════════════════════════════════ */}
       <section id="about-preview" className="py-32 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-terracotta/3 rounded-full blur-3xl" />
+        {/* Ambient glow */}
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-terracotta/3 rounded-full blur-3xl pointer-events-none" />
+
         <div className="container px-6">
           <div className="grid md:grid-cols-2 gap-16 items-center">
+
+            {/* ── LEFT: Team Photo ─────────────────────────────────────────── */}
             <SectionReveal direction="left">
               <div className="relative">
-                <div className="aspect-[3/4] bg-gradient-to-br from-espresso to-background rounded-2xl overflow-hidden border border-white/5">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <Camera className="h-20 w-20 text-terracotta/20" strokeWidth={1} />
-                  </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                {/* Photo frame */}
+                <div className="aspect-[3/4] rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-black/60">
+                  <img
+                    src="/studio-team.jpg"
+                    alt="Subbu Studio team — the people behind every frame"
+                    className="w-full h-full object-cover object-top"
+                  />
+                  {/* Subtle bottom gradient so caption reads cleanly */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+
+                  {/* Established caption pinned to bottom */}
                   <div className="absolute bottom-6 left-6 right-6">
                     <span className="font-nav text-[10px] uppercase tracking-[0.3em] text-terracotta">
                       Established 2010
                     </span>
                   </div>
                 </div>
-                {/* Floating element */}
-                <div className="absolute -bottom-6 -right-6 glass-strong rounded-xl p-4 animate-float">
+
+                {/* Floating award badge */}
+                <div className="absolute -bottom-6 -right-6 glass-strong rounded-xl p-4 animate-float shadow-xl">
                   <div className="flex items-center gap-3">
                     <Award className="h-5 w-5 text-terracotta" />
-                    <span className="font-nav text-xs uppercase tracking-[0.1em] text-white">50+ Awards</span>
+                    <span className="font-nav text-xs uppercase tracking-[0.1em] text-white">
+                      50+ Awards
+                    </span>
                   </div>
                 </div>
+
+                {/* Decorative corner accent */}
+                <div className="absolute -top-3 -left-3 w-16 h-16 border-t-2 border-l-2 border-terracotta/30 rounded-tl-xl pointer-events-none" />
+                <div className="absolute -bottom-3 -right-3 w-16 h-16 border-b-2 border-r-2 border-terracotta/20 rounded-br-xl pointer-events-none" />
               </div>
             </SectionReveal>
 
+            {/* ── RIGHT: Text ──────────────────────────────────────────────── */}
             <SectionReveal direction="right">
               <span className="font-nav text-xs uppercase tracking-[0.3em] text-terracotta mb-4 block">
                 Our Story
               </span>
-              <TextReveal as="h2" className="font-heading text-4xl md:text-5xl font-light text-white mb-6 leading-tight">
+              <TextReveal
+                as="h2"
+                className="font-heading text-4xl md:text-5xl font-light text-white mb-6 leading-tight"
+              >
                 Crafting Visual Poetry Since 2010
               </TextReveal>
               <TextReveal className="text-muted-foreground font-body leading-relaxed mb-6 delay-200">
-                Subbu Studio was born from a singular passion: to transform fleeting moments into 
-                timeless art. Over 15 years, we've grown from a small studio into one of India's 
-                most trusted luxury photography brands, capturing over 500 weddings and countless 
+                Subbu Studio was born from a singular passion: to transform fleeting moments into
+                timeless art. Over 15 years, we've grown from a small studio into one of India's
+                most trusted luxury photography brands, capturing over 500 weddings and countless
                 stories along the way.
               </TextReveal>
               <TextReveal className="text-muted-foreground font-body leading-relaxed mb-8 delay-300">
-                Every frame we create is infused with intention — blending technical mastery with 
+                Every frame we create is infused with intention — blending technical mastery with
                 an artistic eye that sees beyond the obvious.
               </TextReveal>
               <div className="animate-fade-up delay-400">
@@ -251,17 +342,20 @@ const Home = () => {
                   className="inline-flex items-center gap-2 text-terracotta font-nav text-xs uppercase tracking-[0.2em] hover:gap-4 transition-all duration-300"
                 >
                   Discover Our Journey
-                  <span className="h-[1px] w-8 bg-terracotta transition-all duration-300 group-hover:w-12" />
+                  <span className="h-[1px] w-8 bg-terracotta transition-all duration-300" />
                 </Link>
               </div>
             </SectionReveal>
+
           </div>
         </div>
       </section>
 
-      {/* ═══════════ SERVICES ═══════════ */}
+      {/* ══════════════════════════════════════════════════════════════════════
+          SERVICES
+      ══════════════════════════════════════════════════════════════════════ */}
       <section className="py-32 relative">
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-terracotta/3 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-terracotta/3 rounded-full blur-3xl pointer-events-none" />
         <div className="container px-6">
           <div className="text-center mb-20">
             <SectionReveal>
@@ -270,13 +364,16 @@ const Home = () => {
               </span>
             </SectionReveal>
             <SectionReveal delay={200}>
-              <TextReveal as="h2" className="font-heading text-4xl md:text-5xl lg:text-6xl font-light text-white mb-6">
+              <TextReveal
+                as="h2"
+                className="font-heading text-4xl md:text-5xl lg:text-6xl font-light text-white mb-6"
+              >
                 Premium Photography Services
               </TextReveal>
             </SectionReveal>
             <SectionReveal delay={300}>
               <p className="text-muted-foreground font-body text-lg max-w-2xl mx-auto">
-                From intimate weddings to grand corporate events, every project receives the same 
+                From intimate weddings to grand corporate events, every project receives the same
                 dedication to artistic excellence.
               </p>
             </SectionReveal>
@@ -315,7 +412,9 @@ const Home = () => {
         </div>
       </section>
 
-      {/* ═══════════ TESTIMONIALS PREVIEW ═══════════ */}
+      {/* ══════════════════════════════════════════════════════════════════════
+          TESTIMONIALS PREVIEW
+      ══════════════════════════════════════════════════════════════════════ */}
       <section className="py-32 border-y border-white/5">
         <div className="container px-6">
           <div className="text-center mb-16">
@@ -364,10 +463,12 @@ const Home = () => {
         </div>
       </section>
 
-      {/* ═══════════ CTA SECTION ═══════════ */}
+      {/* ══════════════════════════════════════════════════════════════════════
+          CTA
+      ══════════════════════════════════════════════════════════════════════ */}
       <section className="py-32 relative overflow-hidden">
         <ParallaxSection speed={0.2}>
-          <div className="absolute inset-0 flex items-center justify-center">
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
             <div className="w-[600px] h-[600px] rounded-full border border-terracotta/5" />
           </div>
         </ParallaxSection>
@@ -379,7 +480,10 @@ const Home = () => {
             </span>
           </SectionReveal>
           <SectionReveal delay={200}>
-            <TextReveal as="h2" className="font-heading text-4xl md:text-6xl font-light text-white mb-6 max-w-3xl mx-auto leading-tight">
+            <TextReveal
+              as="h2"
+              className="font-heading text-4xl md:text-6xl font-light text-white mb-6 max-w-3xl mx-auto leading-tight"
+            >
               Ready to Transform Your Moments Into Timeless Art?
             </TextReveal>
           </SectionReveal>
@@ -390,7 +494,7 @@ const Home = () => {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
                 to="/booking"
-                className="px-8 py-4 bg-terracotta text-ivory font-nav text-sm uppercase tracking-[0.2em] rounded-full hover:bg-terracotta-light transition-all duration-300 hover:shadow-[0_0_40px_hsl(18 55% 48% / 0.3)]"
+                className="px-8 py-4 bg-terracotta text-ivory font-nav text-sm uppercase tracking-[0.2em] rounded-full hover:bg-terracotta-light transition-all duration-300 hover:shadow-[0_0_40px_hsl(18_55%_48%/0.3)]"
               >
                 Book Your Session
               </Link>
@@ -404,6 +508,7 @@ const Home = () => {
           </SectionReveal>
         </div>
       </section>
+
     </main>
   );
 };

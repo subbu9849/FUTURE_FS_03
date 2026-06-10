@@ -91,11 +91,11 @@ const Footer = () => {
           <div className="flex flex-wrap items-center justify-center gap-5 text-sm text-muted-foreground font-body">
             <span className="flex items-center gap-1.5">
               <MapPin className="h-3.5 w-3.5 text-terracotta/60" strokeWidth={1.5} />
-              Mumbai, India
+              Andhra Pradesh, India
             </span>
             <span className="flex items-center gap-1.5">
               <Phone className="h-3.5 w-3.5 text-terracotta/60" strokeWidth={1.5} />
-              +91 98765 43210
+              +91 9550395349
             </span>
             <span className="flex items-center gap-1.5">
               <Mail className="h-3.5 w-3.5 text-terracotta/60" strokeWidth={1.5} />

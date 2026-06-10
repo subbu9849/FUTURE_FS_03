@@ -119,33 +119,58 @@ const About = () => {
         </div>
       </section>
 
-      {/* Team */}
+         {/* Team */}
       <section className="py-24 border-t border-white/5">
         <div className="container px-6">
           <div className="text-center mb-16">
             <SectionReveal>
-              <span className="font-nav text-xs uppercase tracking-[0.3em] text-terracotta mb-4 block">The Artist</span>
+              <span className="font-nav text-xs uppercase tracking-[0.3em] text-terracotta mb-4 block">
+                The Artist
+              </span>
             </SectionReveal>
+
             <SectionReveal delay={200}>
-              <TextReveal as="h2" className="font-heading text-4xl md:text-5xl font-light text-white">Meet the Visionary</TextReveal>
+              <TextReveal
+                as="h2"
+                className="font-heading text-4xl md:text-5xl font-light text-white"
+              >
+                Meet the Visionary
+              </TextReveal>
             </SectionReveal>
           </div>
 
           <SectionReveal delay={300}>
             <div className="max-w-2xl mx-auto">
               <div className="glass rounded-3xl p-10 text-center">
-                <div className="w-24 h-24 rounded-full bg-gradient-to-br from-terracotta/20 to-terracotta/5 border border-terracotta/20 flex items-center justify-center mx-auto mb-6">
-                  <Camera className="h-10 w-10 text-terracotta" strokeWidth={1} />
+
+                {/* Profile Image */}
+                <div className="w-40 h-40 mx-auto mb-8">
+                  <img
+                    src="/images/subhani.jpg"
+                    alt="Subhani"
+                    className="w-full h-full object-cover rounded-full border-4 border-terracotta shadow-lg"
+                  />
                 </div>
-                <h3 className="font-heading text-3xl font-light text-white mb-2">Subbu</h3>
-                <p className="text-terracotta font-nav text-xs uppercase tracking-[0.2em] mb-6">Founder & Lead Photographer</p>
-                <p className="text-muted-foreground font-body leading-relaxed">
-                  A photographer by passion and an artist by heart, Subbu has spent over 15 years 
-                  perfecting the craft of visual storytelling. His work is characterized by an 
-                  extraordinary ability to find beauty in the unscripted, the authentic, and the 
-                  deeply human. Every frame he captures is a testament to his belief that 
-                  photography is not just about seeing — it's about feeling.
+
+                {/* Name */}
+                <h3 className="font-heading text-3xl font-light text-white mb-2">
+                  Subhani
+                </h3>
+
+                {/* Designation */}
+                <p className="text-terracotta font-nav text-xs uppercase tracking-[0.2em] mb-6">
+                  Founder & Lead Photographer
                 </p>
+
+                {/* Description */}
+                <p className="text-muted-foreground font-body leading-relaxed">
+                  A photographer by passion and an artist by heart, Subhani
+                  specializes in capturing authentic emotions and transforming
+                  them into timeless visual stories. With a creative eye and a
+                  dedication to excellence, every photograph reflects his
+                  commitment to preserving life's most meaningful moments.
+                </p>
+
               </div>
             </div>
           </SectionReveal>

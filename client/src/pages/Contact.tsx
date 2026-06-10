@@ -44,9 +44,9 @@ const Contact = () => {
 
                 <div className="space-y-6">
                   {[
-                    { icon: Phone, label: "Phone", value: "+91 98765 43210", href: "tel:+919876543210" },
+                    { icon: Phone, label: "Phone", value: "+91 9550395349", href: "tel:+919550395349" },
                     { icon: Mail, label: "Email", value: "hello@subbustudio.com", href: "mailto:hello@subbustudio.com" },
-                    { icon: MapPin, label: "Studio Location", value: "Mumbai, India", href: "#" },
+                    { icon: MapPin, label: "Studio Location", value: "AndhraPradesh, India", href: "#" },
                     { icon: Clock, label: "Studio Hours", value: "Mon-Sat, 10 AM - 7 PM", href: "#" },
                   ].map((item, i) => (
                     <a
@@ -107,7 +107,7 @@ const Contact = () => {
                     </label>
                     <Input
                       type="text"
-                      placeholder="Priya Sharma"
+                      placeholder="Subbu Shaik"
                       className="bg-white/5 border-white/10 text-white placeholder:text-white/30 h-12 rounded-xl"
                     />
                   </div>
@@ -117,7 +117,7 @@ const Contact = () => {
                     </label>
                     <Input
                       type="email"
-                      placeholder="priya@example.com"
+                      placeholder="subbu@example.com"
                       className="bg-white/5 border-white/10 text-white placeholder:text-white/30 h-12 rounded-xl"
                     />
                   </div>
@@ -127,7 +127,7 @@ const Contact = () => {
                     </label>
                     <Input
                       type="tel"
-                      placeholder="+91 98765 43210"
+                      placeholder="+91 9550395349"
                       className="bg-white/5 border-white/10 text-white placeholder:text-white/30 h-12 rounded-xl"
                     />
                   </div>
